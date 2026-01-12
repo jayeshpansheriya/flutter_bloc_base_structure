@@ -48,6 +48,9 @@ dependencies:
   dio: ^5.9.0
   retrofit: ^4.9.2
 
+  # Secure Storage for Tokens
+  flutter_secure_storage: ^10.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
