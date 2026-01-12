@@ -1,14 +1,22 @@
 import 'package:get_it/get_it.dart';
 import 'package:contribution/core/network/dio_client.dart';
 import 'package:contribution/core/storage/secure_storage_service.dart';
+import 'package:contribution/core/storage/shared_preferences_service.dart';
 
 final GetIt sl = GetIt.instance;
 
-Future<void> initServiceLocator() async {
+void initServiceLocator() {
   // External
 
   // Core - Storage
   sl.registerLazySingleton<SecureStorageService>(() => SecureStorageService());
+
+  // Register SharedPreferencesService with async initialization
+  sl.registerSingletonAsync<SharedPreferencesService>(() async {
+    final service = SharedPreferencesService();
+    await service.init();
+    return service;
+  });
 
   // Core - Network
   sl.registerLazySingleton<DioClient>(

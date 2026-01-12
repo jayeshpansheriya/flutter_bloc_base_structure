@@ -51,6 +51,9 @@ dependencies:
   # Secure Storage for Tokens
   flutter_secure_storage: ^10.0.0
 
+  # Shared Preferences for Non-Sensitive Data
+  shared_preferences: ^2.5.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
