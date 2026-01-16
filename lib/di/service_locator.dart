@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:contribution/core/network/dio_client.dart';
 import 'package:contribution/core/storage/secure_storage_service.dart';
 import 'package:contribution/core/storage/shared_preferences_service.dart';
-import 'package:contribution/core/localization/cubit/language_cubit.dart';
+import 'package:contribution/core/localization/locale_cubit.dart';
 
 final GetIt sl = GetIt.instance;
 
@@ -39,8 +39,8 @@ void initServiceLocator() {
   );
 
   // Core - Localization
-  sl.registerLazySingleton<LanguageCubit>(
-    () => LanguageCubit(sl<SharedPreferencesService>()),
+  sl.registerLazySingleton<LocaleCubit>(
+    () => LocaleCubit(sl<SharedPreferencesService>()),
   );
 
   // Features - Auth

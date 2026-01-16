@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:contribution/core/localization/cubit/language_state.dart';
+import 'package:contribution/core/localization/locale_state.dart';
 import 'package:contribution/core/localization/models/language_model.dart';
 import 'package:contribution/core/storage/shared_preferences_service.dart';
 
-/// Cubit for managing application language/locale
+/// Cubit for managing application locale
 /// Handles language switching and persistence using SharedPreferencesService
-class LanguageCubit extends Cubit<LanguageState> {
+class LocaleCubit extends Cubit<LocaleState> {
   final SharedPreferencesService _prefs;
 
-  LanguageCubit(this._prefs) : super(LanguageState(_getInitialLocale(_prefs)));
+  LocaleCubit(this._prefs) : super(LocaleState(_getInitialLocale(_prefs)));
 
   /// Get initial locale from saved preferences or default to English
   static Locale _getInitialLocale(SharedPreferencesService prefs) {
@@ -30,14 +30,14 @@ class LanguageCubit extends Cubit<LanguageState> {
     final language = LanguageModel.findByCode(languageCode);
     if (language != null) {
       await _prefs.setLanguage(languageCode);
-      emit(LanguageState(language.locale));
+      emit(LocaleState(language.locale));
     }
   }
 
   /// Reset to system default language (English)
   Future<void> resetToSystemLanguage() async {
     await _prefs.remove('language');
-    emit(const LanguageState(Locale('en')));
+    emit(const LocaleState(Locale('en')));
   }
 
   /// Get current language model

@@ -30,13 +30,26 @@ Before making any changes, consult these guidelines:
 
 ```
 lib/
-├── core/           # Shared: network, storage, constants, theme, utils, localization
-│   ├── localization/   # Localization (ARB files, models, cubit)
-│   │   ├── l10n/           # ARB files & generated code
-│   │   ├── models/         # LanguageModel
-│   │   └── cubit/          # LanguageCubit, LanguageState
+├── l10n/               # ARB translation files (input)
+│   ├── app_en.arb
+│   └── app_hi.arb
+│
+├── generated/
+│   ├── l10n/               # Generated localization code (DO NOT EDIT)
+│   │   ├── app_localizations.dart
+│   │   ├── app_localizations_en.dart
+│   │   └── app_localizations_hi.dart
+│   └── assets/         # flutter_gen_runner output
+│       └── assets.gen.dart
+│
+├── core/
+│   ├── localization/       # Locale state & logic
+│   │   ├── locale_cubit.dart
+│   │   ├── locale_state.dart
+│   │   └── models/
+│   │       └── language_model.dart
 │   ├── network/        # DioClient, API services
-│   ├── storage/        # SecureStorage, SharedPreferences, LocalePreferences
+│   ├── storage/        # SecureStorage, SharedPreferences
 │   ├── theme/          # AppTheme
 │   └── constants/      # App constants
 ├── features/       # Feature modules (auth, home, etc.)
@@ -110,9 +123,11 @@ try {
 
 #### 6. Localization
 
-- ✅ Translations stored in ARB files (`lib/core/localization/l10n/*.arb`)
+- ✅ ARB files in `lib/l10n/` (input only)
+- ✅ Generated code in `lib/generated/l10n/` (never edit)
+- ✅ Locale logic in `lib/core/localization/` (`LocaleCubit`, `LocaleState`)
 - ✅ Use `AppLocalizations.of(context)!` to access translations
-- ✅ Use `LanguageCubit` to change language programmatically
+- ✅ Use `LocaleCubit` to change language programmatically
 - ✅ **ALWAYS** run `flutter gen-l10n` after modifying ARB files
 - ✅ Language preference persists using `SharedPreferencesService.setLanguage()`
 - ✅ Supported languages: English (en), Hindi (hi)
@@ -123,8 +138,8 @@ final l10n = AppLocalizations.of(context)!;
 Text(l10n.welcome);
 
 // Change language
-context.read<LanguageCubit>().changeLanguage('hi'); // Switch to Hindi
-context.read<LanguageCubit>().changeLanguage('en'); // Switch to English
+context.read<LocaleCubit>().changeLanguage('hi'); // Switch to Hindi
+context.read<LocaleCubit>().changeLanguage('en'); // Switch to English
 ```
 
 #### 7. Service Registration
@@ -148,8 +163,8 @@ sl.registerLazySingleton<UserRepository>(() => UserRepository(sl()));
 sl.registerFactory<UserCubit>(() => UserCubit(sl()));
 
 // Localization
-sl.registerLazySingleton<LanguageCubit>(
-  () => LanguageCubit(sl<SharedPreferencesService>()),
+sl.registerLazySingleton<LocaleCubit>(
+  () => LocaleCubit(sl<SharedPreferencesService>()),
 );
 ```
 
@@ -233,11 +248,11 @@ Project Root
 
 ### When Working with Localization:
 
-1. Add translations to ALL ARB files (`app_en.arb`, `app_hi.arb`)
+1. Add translations to ALL ARB files in `lib/l10n/` (`app_en.arb`, `app_hi.arb`)
 2. Run `flutter gen-l10n` after modifying ARB files
 3. Use `AppLocalizations.of(context)!` to access translations
-4. Use `LanguageCubit` to change language programmatically
-5. Never edit generated files in `lib/core/localization/l10n/`
+4. Use `LocaleCubit` to change language programmatically
+5. Never edit generated files in `lib/generated/l10n/`
 6. Language preference is stored using `SharedPreferencesService.setLanguage()`
 
 ---
