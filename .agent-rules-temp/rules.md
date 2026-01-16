@@ -22,6 +22,7 @@ Before making any changes, consult these guidelines:
 5. **[guidelines/DIO_RETROFIT_SETUP.md](../guidelines/DIO_RETROFIT_SETUP.md)** - Complete Retrofit setup guide with examples
 6. **[guidelines/SECURE_TOKEN_STORAGE_GUIDE.md](../guidelines/SECURE_TOKEN_STORAGE_GUIDE.md)** - Token management and authentication flows
 7. **[guidelines/PERFORMANCE_OPTIMIZATION.md](../guidelines/PERFORMANCE_OPTIMIZATION.md)** - Token caching and performance tips
+8. **[guidelines/localization.md](../guidelines/localization.md)** - Localization setup, ARB files, translations, language switching (English & Hindi)
 
 ## 🎯 Quick Rules Summary
 
@@ -29,7 +30,15 @@ Before making any changes, consult these guidelines:
 
 ```
 lib/
-├── core/           # Shared: network, storage, constants, theme, utils
+├── core/           # Shared: network, storage, constants, theme, utils, localization
+│   ├── localization/   # Localization (ARB files, models, cubit)
+│   │   ├── l10n/           # ARB files & generated code
+│   │   ├── models/         # LanguageModel
+│   │   └── cubit/          # LanguageCubit, LanguageState
+│   ├── network/        # DioClient, API services
+│   ├── storage/        # SecureStorage, SharedPreferences, LocalePreferences
+│   ├── theme/          # AppTheme
+│   └── constants/      # App constants
 ├── features/       # Feature modules (auth, home, etc.)
 │   └── [feature]/
 │       ├── data/       # API, models, repositories
@@ -37,7 +46,7 @@ lib/
 │       └── presentation/ # BLoC/Cubit, pages, widgets
 ├── routes/         # GoRouter configuration
 ├── di/             # GetIt service locator
-├── app.dart        # Root MaterialApp
+├── app.dart        # Root MaterialApp with localization
 └── main.dart       # Entry point
 ```
 
@@ -47,7 +56,8 @@ lib/
 - **DI**: `get_it` (Service Locator)
 - **Routing**: `go_router`
 - **Networking**: `dio` + `retrofit` (ALWAYS use Retrofit, not direct Dio)
-- **Storage**: `flutter_secure_storage` (with in-memory caching)
+- **Storage**: `flutter_secure_storage` (with in-memory caching), `shared_preferences`
+- **Localization**: `flutter_localizations` + `intl` (ARB files, LanguageCubit)
 
 ### Critical Rules
 
@@ -98,7 +108,26 @@ try {
 }
 ```
 
-#### 6. Service Registration
+#### 6. Localization
+
+- ✅ Translations stored in ARB files (`lib/core/localization/l10n/*.arb`)
+- ✅ Use `AppLocalizations.of(context)!` to access translations
+- ✅ Use `LanguageCubit` to change language programmatically
+- ✅ **ALWAYS** run `flutter gen-l10n` after modifying ARB files
+- ✅ Language preference persists using `SharedPreferencesService.setLanguage()`
+- ✅ Supported languages: English (en), Hindi (hi)
+
+```dart
+// Access translations
+final l10n = AppLocalizations.of(context)!;
+Text(l10n.welcome);
+
+// Change language
+context.read<LanguageCubit>().changeLanguage('hi'); // Switch to Hindi
+context.read<LanguageCubit>().changeLanguage('en'); // Switch to English
+```
+
+#### 7. Service Registration
 
 ```dart
 // lib/di/service_locator.dart
@@ -117,6 +146,11 @@ sl.registerLazySingleton<UserRepository>(() => UserRepository(sl()));
 
 // BLoCs/Cubits (Factory)
 sl.registerFactory<UserCubit>(() => UserCubit(sl()));
+
+// Localization
+sl.registerLazySingleton<LanguageCubit>(
+  () => LanguageCubit(sl<SharedPreferencesService>()),
+);
 ```
 
 ## 🔍 Before You Code
@@ -146,11 +180,11 @@ flutter pub get
 # Code generation (after Retrofit changes)
 flutter pub run build_runner build --delete-conflicting-outputs
 
+# Generate localization files (after ARB changes)
+flutter gen-l10n
+
 # Analyze code
 flutter analyze
-
-# Run tests
-flutter test
 ```
 
 ## 📖 Documentation Hierarchy
@@ -163,6 +197,7 @@ Project Root
 │   ├── networking.md           (How to make API calls)
 │   ├── coding_standards.md     (How to write code)
 │   ├── antigravity_behavior.md (How Antigravity works)
+│   ├── localization.md         (Localization & translations)
 │   ├── DIO_RETROFIT_SETUP.md   (Retrofit setup guide)
 │   ├── SECURE_TOKEN_STORAGE_GUIDE.md (Token management)
 │   └── PERFORMANCE_OPTIMIZATION.md (Performance tips)
@@ -195,6 +230,15 @@ Project Root
 2. On logout: `await dioClient.clearTokens()`
 3. Don't read from storage on every request (use cache!)
 4. Token refresh is automatic (no manual handling needed)
+
+### When Working with Localization:
+
+1. Add translations to ALL ARB files (`app_en.arb`, `app_hi.arb`)
+2. Run `flutter gen-l10n` after modifying ARB files
+3. Use `AppLocalizations.of(context)!` to access translations
+4. Use `LanguageCubit` to change language programmatically
+5. Never edit generated files in `lib/core/localization/l10n/`
+6. Language preference is stored using `SharedPreferencesService.setLanguage()`
 
 ---
 
