@@ -2,9 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:contribution/features/home/home_page.dart';
 import 'package:contribution/features/auth/auth_login_page.dart';
+import 'package:contribution/features/splash/splash_page.dart';
+import 'package:contribution/features/no_internet/no_internet_page.dart';
 
 /// App route names for type-safe navigation
 class AppRoutes {
+  // System routes
+  static const String splash = '/splash';
+  static const String noInternet = '/no-internet';
+
   // Auth routes
   static const String login = '/login';
   static const String register = '/register';
@@ -17,7 +23,7 @@ class AppRoutes {
 
 /// Global GoRouter configuration
 final GoRouter appRouter = GoRouter(
-  initialLocation: AppRoutes.home,
+  initialLocation: AppRoutes.splash,
   debugLogDiagnostics: true,
 
   // Error handling
@@ -25,6 +31,19 @@ final GoRouter appRouter = GoRouter(
 
   // Routes
   routes: [
+    // ==================== System Routes ====================
+    GoRoute(
+      path: AppRoutes.splash,
+      name: 'splash',
+      builder: (context, state) => const SplashPage(),
+    ),
+
+    GoRoute(
+      path: AppRoutes.noInternet,
+      name: 'noInternet',
+      builder: (context, state) => const NoInternetPage(),
+    ),
+
     // ==================== Auth Routes ====================
     GoRoute(
       path: AppRoutes.login,

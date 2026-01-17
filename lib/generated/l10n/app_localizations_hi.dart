@@ -15,59 +15,21 @@ class AppLocalizationsHi extends AppLocalizations {
   String get welcome => 'स्वागत है';
 
   @override
-  String get login => 'लॉगिन';
+  String get splashTitle => 'योगदान में आपका स्वागत है';
 
   @override
-  String get logout => 'लॉगआउट';
+  String get checkingConnection => 'कनेक्शन जांचा जा रहा है...';
 
   @override
-  String get email => 'ईमेल';
+  String get noInternetTitle => 'इंटरनेट कनेक्शन नहीं है';
 
   @override
-  String get password => 'पासवर्ड';
+  String get noInternetMessage =>
+      'कृपया अपना इंटरनेट कनेक्शन जांचें और पुनः प्रयास करें।';
 
   @override
-  String get forgotPassword => 'पासवर्ड भूल गए?';
+  String get retry => 'पुनः प्रयास करें';
 
   @override
-  String get settings => 'सेटिंग्स';
-
-  @override
-  String get language => 'भाषा';
-
-  @override
-  String get changeLanguage => 'भाषा बदलें';
-
-  @override
-  String get english => 'English';
-
-  @override
-  String get hindi => 'हिन्दी';
-
-  @override
-  String get spanish => 'Español';
-
-  @override
-  String get home => 'होम';
-
-  @override
-  String get profile => 'प्रोफ़ाइल';
-
-  @override
-  String get save => 'सहेजें';
-
-  @override
-  String get cancel => 'रद्द करें';
-
-  @override
-  String get ok => 'ठीक है';
-
-  @override
-  String get error => 'त्रुटि';
-
-  @override
-  String get success => 'सफलता';
-
-  @override
-  String get loading => 'लोड हो रहा है...';
+  String get connectionRestored => 'कनेक्शन बहाल हो गया!';
 }

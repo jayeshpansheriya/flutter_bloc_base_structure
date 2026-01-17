@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:contribution/core/network/dio_client.dart';
+import 'package:contribution/core/network/connectivity_service.dart';
+import 'package:contribution/core/network/cubit/connectivity_cubit.dart';
 import 'package:contribution/core/storage/secure_storage_service.dart';
 import 'package:contribution/core/storage/shared_preferences_service.dart';
 import 'package:contribution/core/localization/locale_cubit.dart';
@@ -36,6 +38,12 @@ void initServiceLocator() {
       //   };
       // },
     ),
+  );
+
+  // Core - Connectivity
+  sl.registerLazySingleton<ConnectivityService>(() => ConnectivityService());
+  sl.registerLazySingleton<ConnectivityCubit>(
+    () => ConnectivityCubit(sl<ConnectivityService>()),
   );
 
   // Core - Localization

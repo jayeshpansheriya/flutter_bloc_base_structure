@@ -5,6 +5,7 @@ import 'routes/app_router.dart';
 import 'core/theme/app_theme.dart';
 import 'core/localization/locale_cubit.dart';
 import 'core/localization/locale_state.dart';
+import 'core/network/cubit/connectivity_cubit.dart';
 import 'di/service_locator.dart';
 
 class MyApp extends StatelessWidget {
@@ -12,8 +13,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: sl<LocaleCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(value: sl<LocaleCubit>()),
+        BlocProvider.value(value: sl<ConnectivityCubit>()),
+      ],
       child: BlocBuilder<LocaleCubit, LocaleState>(
         builder: (context, localeState) {
           return MaterialApp.router(

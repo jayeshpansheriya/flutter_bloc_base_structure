@@ -60,6 +60,9 @@ dependencies:
   # Shared Preferences for Non-Sensitive Data
   shared_preferences: ^2.5.4
 
+  # Connectivity Monitoring
+  connectivity_plus: ^7.0.0
+
   # Awesome Extensions for flutter and dart extensions
   awesome_extensions: ^2.0.26
 

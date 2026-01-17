@@ -8,80 +8,28 @@
   "@welcome": {
     "description": "Welcome message"
   },
-  "login": "Login",
-  "@login": {
-    "description": "Login button text"
+  "splashTitle": "Welcome to Contribution",
+  "@splashTitle": {
+    "description": "Splash screen title"
   },
-  "logout": "Logout",
-  "@logout": {
-    "description": "Logout button text"
+  "checkingConnection": "Checking connection...",
+  "@checkingConnection": {
+    "description": "Message shown while checking internet connectivity"
   },
-  "email": "Email",
-  "@email": {
-    "description": "Email field label"
+  "noInternetTitle": "No Internet Connection",
+  "@noInternetTitle": {
+    "description": "Title for no internet screen"
   },
-  "password": "Password",
-  "@password": {
-    "description": "Password field label"
+  "noInternetMessage": "Please check your internet connection and try again.",
+  "@noInternetMessage": {
+    "description": "Message explaining no internet connection"
   },
-  "forgotPassword": "Forgot Password?",
-  "@forgotPassword": {
-    "description": "Forgot password link text"
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
   },
-  "settings": "Settings",
-  "@settings": {
-    "description": "Settings page title"
-  },
-  "language": "Language",
-  "@language": {
-    "description": "Language setting label"
-  },
-  "changeLanguage": "Change Language",
-  "@changeLanguage": {
-    "description": "Change language option text"
-  },
-  "english": "English",
-  "@english": {
-    "description": "English language name"
-  },
-  "hindi": "हिन्दी",
-  "@hindi": {
-    "description": "Hindi language name"
-  },
-  "spanish": "Español",
-  "@spanish": {
-    "description": "Spanish language name"
-  },
-  "home": "Home",
-  "@home": {
-    "description": "Home page title"
-  },
-  "profile": "Profile",
-  "@profile": {
-    "description": "Profile page title"
-  },
-  "save": "Save",
-  "@save": {
-    "description": "Save button text"
-  },
-  "cancel": "Cancel",
-  "@cancel": {
-    "description": "Cancel button text"
-  },
-  "ok": "OK",
-  "@ok": {
-    "description": "OK button text"
-  },
-  "error": "Error",
-  "@error": {
-    "description": "Error message title"
-  },
-  "success": "Success",
-  "@success": {
-    "description": "Success message title"
-  },
-  "loading": "Loading...",
-  "@loading": {
-    "description": "Loading indicator text"
+  "connectionRestored": "Connection restored!",
+  "@connectionRestored": {
+    "description": "Message shown when internet connection is restored"
   }
 }

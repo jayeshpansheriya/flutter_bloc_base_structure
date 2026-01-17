@@ -110,119 +110,41 @@ abstract class AppLocalizations {
   /// **'Welcome'**
   String get welcome;
 
-  /// Login button text
+  /// Splash screen title
   ///
   /// In en, this message translates to:
-  /// **'Login'**
-  String get login;
+  /// **'Welcome to Contribution'**
+  String get splashTitle;
 
-  /// Logout button text
+  /// Message shown while checking internet connectivity
   ///
   /// In en, this message translates to:
-  /// **'Logout'**
-  String get logout;
+  /// **'Checking connection...'**
+  String get checkingConnection;
 
-  /// Email field label
+  /// Title for no internet screen
   ///
   /// In en, this message translates to:
-  /// **'Email'**
-  String get email;
+  /// **'No Internet Connection'**
+  String get noInternetTitle;
 
-  /// Password field label
+  /// Message explaining no internet connection
   ///
   /// In en, this message translates to:
-  /// **'Password'**
-  String get password;
+  /// **'Please check your internet connection and try again.'**
+  String get noInternetMessage;
 
-  /// Forgot password link text
+  /// Retry button text
   ///
   /// In en, this message translates to:
-  /// **'Forgot Password?'**
-  String get forgotPassword;
+  /// **'Retry'**
+  String get retry;
 
-  /// Settings page title
+  /// Message shown when internet connection is restored
   ///
   /// In en, this message translates to:
-  /// **'Settings'**
-  String get settings;
-
-  /// Language setting label
-  ///
-  /// In en, this message translates to:
-  /// **'Language'**
-  String get language;
-
-  /// Change language option text
-  ///
-  /// In en, this message translates to:
-  /// **'Change Language'**
-  String get changeLanguage;
-
-  /// English language name
-  ///
-  /// In en, this message translates to:
-  /// **'English'**
-  String get english;
-
-  /// Hindi language name
-  ///
-  /// In en, this message translates to:
-  /// **'हिन्दी'**
-  String get hindi;
-
-  /// Spanish language name
-  ///
-  /// In en, this message translates to:
-  /// **'Español'**
-  String get spanish;
-
-  /// Home page title
-  ///
-  /// In en, this message translates to:
-  /// **'Home'**
-  String get home;
-
-  /// Profile page title
-  ///
-  /// In en, this message translates to:
-  /// **'Profile'**
-  String get profile;
-
-  /// Save button text
-  ///
-  /// In en, this message translates to:
-  /// **'Save'**
-  String get save;
-
-  /// Cancel button text
-  ///
-  /// In en, this message translates to:
-  /// **'Cancel'**
-  String get cancel;
-
-  /// OK button text
-  ///
-  /// In en, this message translates to:
-  /// **'OK'**
-  String get ok;
-
-  /// Error message title
-  ///
-  /// In en, this message translates to:
-  /// **'Error'**
-  String get error;
-
-  /// Success message title
-  ///
-  /// In en, this message translates to:
-  /// **'Success'**
-  String get success;
-
-  /// Loading indicator text
-  ///
-  /// In en, this message translates to:
-  /// **'Loading...'**
-  String get loading;
+  /// **'Connection restored!'**
+  String get connectionRestored;
 }
 
 class _AppLocalizationsDelegate

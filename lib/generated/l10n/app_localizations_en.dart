@@ -15,59 +15,21 @@ class AppLocalizationsEn extends AppLocalizations {
   String get welcome => 'Welcome';
 
   @override
-  String get login => 'Login';
+  String get splashTitle => 'Welcome to Contribution';
 
   @override
-  String get logout => 'Logout';
+  String get checkingConnection => 'Checking connection...';
 
   @override
-  String get email => 'Email';
+  String get noInternetTitle => 'No Internet Connection';
 
   @override
-  String get password => 'Password';
+  String get noInternetMessage =>
+      'Please check your internet connection and try again.';
 
   @override
-  String get forgotPassword => 'Forgot Password?';
+  String get retry => 'Retry';
 
   @override
-  String get settings => 'Settings';
-
-  @override
-  String get language => 'Language';
-
-  @override
-  String get changeLanguage => 'Change Language';
-
-  @override
-  String get english => 'English';
-
-  @override
-  String get hindi => 'हिन्दी';
-
-  @override
-  String get spanish => 'Español';
-
-  @override
-  String get home => 'Home';
-
-  @override
-  String get profile => 'Profile';
-
-  @override
-  String get save => 'Save';
-
-  @override
-  String get cancel => 'Cancel';
-
-  @override
-  String get ok => 'OK';
-
-  @override
-  String get error => 'Error';
-
-  @override
-  String get success => 'Success';
-
-  @override
-  String get loading => 'Loading...';
+  String get connectionRestored => 'Connection restored!';
 }
